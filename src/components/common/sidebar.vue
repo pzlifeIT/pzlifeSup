@@ -8,12 +8,10 @@
 
             <el-submenu index="2">
                 <template slot="title">
-                    <span class="sb-icon"><i class="material-icons">perm_data_setting</i></span>
-                    <span class="sb-cn">一级</span>
+                    <span class="sb-icon"><i class="el-icon-setting"></i></span>
+                    <span class="sb-cn">市场推广管理</span>
                 </template>
-                <el-menu-item index="#">二级</el-menu-item>
-                <el-menu-item index="#">二级</el-menu-item>
-                <el-menu-item index="#">二级</el-menu-item>
+                <el-menu-item index="marketing">市场推广</el-menu-item>
             </el-submenu>
 
         </el-menu>
@@ -47,6 +45,11 @@
        font-size:14px;
      
    }
-   
-    .material-icons {font-size:12px;}
+   .material-icons{
+         vertical-align: middle;
+        margin-right: 5px;
+        width: 24px;
+        text-align: center;
+        font-size:18px;
+   }
 </style>

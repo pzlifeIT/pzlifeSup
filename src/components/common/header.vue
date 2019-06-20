@@ -4,7 +4,7 @@
             <!--Logo area-->
             <el-col :xs="16" :sm="16" :md="22">
                 <div class="logo">  
-                    <span class="logo_prefix">JSPang</span><span class="logo_suffix">Admin</span>
+                    <span class="logo_prefix">品质生活广场</span><span class="logo_suffix">CMS</span>
                 </div>
             </el-col>
             <!--Search area-->    
@@ -26,24 +26,21 @@
             <el-col class="fr" :xs="8" :sm="8" :md="2" >
               <div class="user-header">
                   <el-dropdown trigger="click" menu-align="start">
-                      <img src="../../../static/images/b_header.jpg" width="50px" />
+                      <span class="el-dropdown-link">
+                        <span class="name">这是个名字</span>
+                        <img class="userImg" src="https://webimages.pzlive.vip/776logo.png" width="50px" />
+                      </span>
                       <el-dropdown-menu slot="dropdown">
                           <el-dropdown-item >
-                              <div class="setting-div">
+                              <div class="setting-div"  @click="modifyPwd">
                                   <span class="setting-icon"><i class="material-icons">account_box</i></span> 
-                                  <span class="setting-string"> Profile  个人</span>
+                                  <span class="setting-string">修改密码</span>
                               </div>
                           </el-dropdown-item>
-                          <el-dropdown-item divided>
-                              <div class="setting-div">
-                                  <span class="setting-icon"><i class="material-icons">settings</i></span> 
-                                  <span class="setting-string"> Settings  设置</span>
-                              </div>
-                          </el-dropdown-item>
-                          <el-dropdown-item divided>
-                              <div class="setting-div">
+                          <el-dropdown-item divided  >
+                              <div class="setting-div" @click="quitlogin">
                                   <span class="setting-icon"><i class="material-icons">assignment_return</i></span> 
-                                  <span class="setting-string"> Sign out  退出</span>
+                                  <span class="setting-string">退出登录</span>
                               </div>
                           </el-dropdown-item>
                       </el-dropdown-menu>
@@ -62,7 +59,12 @@
                 }
         },
         methods:{
-            
+            quitlogin(){
+              this.$router.push({ path: 'login' })
+            },
+            modifyPwd(){
+              this.$router.push({ path: 'modifyPwd' })
+            }
         }
     }
 </script>
@@ -197,7 +199,12 @@
         padding-top:3px;
         padding-right:3px;
     }
-    
-
+    .name{
+      color: #fff;
+      cursor: pointer;
+    }
+    .userImg{
+      background-color: #fff;
+    }
 
 </style>
