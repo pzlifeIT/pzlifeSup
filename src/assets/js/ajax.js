@@ -1,6 +1,8 @@
 import { Loading, Message } from 'element-ui';
 import router from '../../router/index.js'
 
+let apiconfig = process.env.SUP_URL || SUP_URL
+
 function Ajax(params) {
     // 创建ajax对象
     let xhr = null;
@@ -10,7 +12,7 @@ function Ajax(params) {
         xhr = new ActiveXObject('Microsoft.XMLHTTP')
     }
     if ('withCredentials' in xhr) {}
-    let url = 'https://wwwapi.pzlive.vip/admin/';
+    let url = apiconfig;
     url += params.url;
     let type = reType(params.type)
         // 用于清除缓存
@@ -125,13 +127,12 @@ function network(code) {
     }
     message(text)
 }
-localStorage.setItem("cms_con_id", '5047914e4ce85db2a960c2757b998fde')
 
 function addConId(data = {}) {
     if (!(data instanceof FormData)) {
-        data.cms_con_id = localStorage.getItem("cms_con_id") || "";
+        data.sup_con_id = localStorage.getItem("sup_con_id") || "";
     } else {
-        data.append("cms_con_id", localStorage.getItem("cms_con_id") || "");
+        data.append("sup_con_id", localStorage.getItem("sup_con_id") || "");
     }
     return data
 }
@@ -155,7 +156,11 @@ let request = function(params = {}) {
     }
 
     let data = '';
-    if (!params.login) data = addConId(params.data);
+    if (!params.login) {
+        data = addConId(params.data)
+    } else {
+        data = params.data
+    }
 
     let loadingInstance = Loading.service({
         fullscreen: true,
@@ -163,6 +168,7 @@ let request = function(params = {}) {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)'
     });
+
     Ajax({
         data: data,
         url: params.url,
@@ -173,7 +179,7 @@ let request = function(params = {}) {
                 login();
                 return
             }
-            if (res.code == "200" || res.code == "3000") {
+            if (res.code == "200") {
                 typeof params.success == 'function' ? params.success(res) : '';
             } else if (res.code == "3100") {
                 message('没有权限');
@@ -189,7 +195,6 @@ let request = function(params = {}) {
         }
     })
 }
-
 export {
     request
 }

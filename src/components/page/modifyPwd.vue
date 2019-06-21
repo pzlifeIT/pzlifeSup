@@ -5,14 +5,14 @@
           <span>修改密码</span>
         </div>
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="原密码" prop="oldPwd">
-          <el-input type="password" v-model="ruleForm.oldPwd"></el-input>
+        <el-form-item label="原密码" prop="passwd">
+          <el-input type="password" v-model="ruleForm.passwd"></el-input>
         </el-form-item>
-        <el-form-item label="新密码" prop="pass">
-          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        <el-form-item label="新密码" prop="new_passwd1">
+          <el-input type="password" v-model="ruleForm.new_passwd1" ></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="checkPass">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        <el-form-item label="确认密码" prop="new_passwd2">
+          <el-input type="password" v-model="ruleForm.new_passwd2" ></el-input>
         </el-form-item>
         
         <el-form-item>
@@ -27,7 +27,8 @@
 <script>
 export default {
       data() {
-      var checkOldPwd = (rule, value, callback) => {
+      var checkpasswd	 = (rule, value, callback) => {
+        console.log(value)
         if (!value) {
           return callback(new Error('原密码不能为空'));
         }else{
@@ -35,19 +36,21 @@ export default {
         }
       };
       var validatePass = (rule, value, callback) => {
+        console.log(value)
         if (value === '') {
           callback(new Error('请输入新密码'));
         } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass');
+          if (this.ruleForm.new_passwd2 !== '') {
+            this.$refs.ruleForm.validateField('new_passwd2');
           }
           callback();
         }
       };
       var validatePass2 = (rule, value, callback) => {
+        console.log(value)
         if (value === '') {
           callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm.pass) {
+        } else if (value !== this.ruleForm.new_passwd1) {
           callback(new Error('两次输入密码不一致!'));
         } else {
           callback();
@@ -55,19 +58,19 @@ export default {
       };
       return {
         ruleForm: {
-          pass: '',
-          checkPass: '',
-          oldPwd: ''
+          new_passwd1: '',
+          new_passwd2: '',
+          passwd: ''
         },
         rules: {
-          pass: [
+          new_passwd1: [
             { validator: validatePass, trigger: 'blur' }
           ],
-          checkPass: [
+          new_passwd2: [
             { validator: validatePass2, trigger: 'blur' }
           ],
-          oldPwd: [
-            { validator: checkOldPwd, trigger: 'blur' }
+          passwd: [
+            { validator: checkpasswd, trigger: 'blur' }
           ]
         }
       };
@@ -76,12 +79,47 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            this.resetpassword()
           } else {
             console.log('error submit!!');
             return false;
           }
         });
+      },
+      resetpassword(){
+        let that =this;
+        that.$request({
+        url:'user/resetpassword',
+        data:that.ruleForm,
+        success:function(res){
+            that.$message({message:'修改成功,请重新登录',type:'success' });
+            that.$router.push({ path: '/login' })
+        },
+        error(code){
+          let text = '';
+          switch(parseInt(code)){
+            case 3001:
+              text = '密码错误';
+              break;
+            case 3002:
+              text = '密码必须为6-16个任意字符';
+              break;
+            case 3003:
+              text = '老密码不能为空';
+              break;
+            case 3004:
+              text = '密码确认有误';
+              break;
+            case 3005:
+              text = '修改密码失败';
+              break;
+            default:
+              text = '意料之外的错误';
+              break
+          }
+          that.$message({message:text,type:'error' });
+        }
+      })
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

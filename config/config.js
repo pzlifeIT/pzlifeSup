@@ -1,1 +1,0 @@
-const apiUrl = "https://wwwapi.pzlive.vip/index/"

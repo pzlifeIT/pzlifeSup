@@ -1,10 +1,10 @@
 <template>
     <div class="sidebar">
         <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
-            <el-menu-item index="index">
+            <!-- <el-menu-item index="index">
                     <span class="sb-icon"><i class="material-icons">home</i></span>
                      <span class="sb-cn">首页</span>
-            </el-menu-item>
+            </el-menu-item> -->
 
             <el-submenu index="2">
                 <template slot="title">
@@ -13,7 +13,6 @@
                 </template>
                 <el-menu-item index="marketing">市场推广</el-menu-item>
             </el-submenu>
-
         </el-menu>
     </div>
 </template>

@@ -5,9 +5,11 @@ import App from './App';
 import router from './router';
 import ElementUI from 'element-ui';
 import { request } from './assets/js/ajax'
+import { glbalData } from './assets/js/globalData'
 //引入element-ui的默认CSS样式
-import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.prototype.$request = request
+Vue.prototype.$glbalData = glbalData
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false

@@ -3,11 +3,10 @@
     <el-card class="box-card">
       <img class="logImg" src="https://webimages.pzlive.vip/776logo.png" alt="">
       <el-form  label-position="top" label-width="80px" :model="userinfo">
-        <el-form-item label="账号:">
-          <el-input placeholder="请输入账号" v-model="userinfo.user"></el-input>
+        <el-form-item label="手机号:">
+          <el-input placeholder="请输入手机号" v-model="userinfo.user"></el-input>
         </el-form-item>
         <el-form-item label="密码:">
-          <!-- <el-input placeholder="请输入密码" v-model="pwd" show-password></el-input> -->
           <el-input placeholder="请输入密码" v-model="userinfo.pwd" type="password"></el-input>
         </el-form-item>
         <el-form-item>
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import {request} from '../../assets/js/ajax'
 export default {
   data () {
     return {
@@ -44,9 +42,39 @@ export default {
         return
       } 
       let that =this;
-      // that.$request({
-
-      // })
+      that.$request({
+        url:'user/login',
+        login:true,
+        data:{
+          mobile:that.userinfo.user,
+          passwd:that.userinfo.pwd
+        },
+        success:function(res){
+            localStorage.setItem("sup_con_id",res.sup_con_id)
+            that.$router.push({ path: '/' })
+        },
+        error(code){
+          let text = '';
+          switch(parseInt(code)){
+            case 3001:
+              text = '账号密码不能为空';
+              break;
+            case 3002:
+              text = '用户不存在';
+              break;
+            case 3003:
+              text = '密码错误';
+              break;
+            case 3004:
+              text = '登录失败';
+              break;
+            default:
+              text = '意料之外的错误';
+              break
+          }
+          that.$message({message:text,type:'error' });
+        }
+      })
     }
   }
 }

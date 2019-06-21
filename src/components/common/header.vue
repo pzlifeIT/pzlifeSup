@@ -2,32 +2,16 @@
     <div class="header">
         <el-row :gutter="10">
             <!--Logo area-->
-            <el-col :xs="16" :sm="16" :md="22">
+            <el-col :xs="16" :sm="16" :md="20">
                 <div class="logo">  
                     <span class="logo_prefix">品质生活广场</span><span class="logo_suffix">CMS</span>
                 </div>
             </el-col>
-            <!--Search area-->    
-            <!-- <el-col :xs="12" :sm="12" :md="8">
-                <div class="search">
-                    <el-input
-                        size="small"
-                        placeholder="Search for...">
-                        <el-button slot="append" icon="search"></el-button>
-                    </el-input>
-                </div> 
-            </el-col> -->
-            <!-- <el-col :xs="24" :sm="12" :md="4">
-                <div class="website">
-                    <span>Website:</span>
-                    <span>www.jspang.com</span>
-                </div>
-            </el-col> -->
-            <el-col class="fr" :xs="8" :sm="8" :md="2" >
+            <el-col class="fr" :xs="8" :sm="8" :md="4" >
               <div class="user-header">
                   <el-dropdown trigger="click" menu-align="start">
                       <span class="el-dropdown-link">
-                        <span class="name">这是个名字</span>
+                        <span class="name din fl">{{name}}</span>
                         <img class="userImg" src="https://webimages.pzlive.vip/776logo.png" width="50px" />
                       </span>
                       <el-dropdown-menu slot="dropdown">
@@ -53,11 +37,14 @@
 
 <script>
     export default {
+      props: ['name'],
         data() {
             return {
-                name: 'linxin'
                 }
         },
+        mounted () {
+        console.log()
+      },
         methods:{
             quitlogin(){
               this.$router.push({ path: 'login' })
@@ -201,7 +188,11 @@
     }
     .name{
       color: #fff;
+      height: 50px;
+      line-height: 50px;
+      margin-right: 10px;
       cursor: pointer;
+      font-size: 18px;
     }
     .userImg{
       background-color: #fff;
