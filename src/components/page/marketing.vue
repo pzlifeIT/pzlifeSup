@@ -187,6 +187,7 @@ export default {
           success(res){
             that.boxcard = false
             that.$message({message:'修改成功',type:'success' });
+            that.getpromoteList()
           },
           error(code){
             let text = '';
