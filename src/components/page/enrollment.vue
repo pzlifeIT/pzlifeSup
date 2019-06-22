@@ -30,7 +30,7 @@
       <el-table-column  prop="create_time" label="报名时间" ></el-table-column>
     </el-table>
     <div class="flex-cen">
-      <el-pagination :hide-on-single-page="true" background @current-change="pageChange" layout="prev, pager, next" :total="total"> </el-pagination>
+      <el-pagination :hide-on-single-page="true" background @current-change="pageChange" ref="pagination"  layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
   </div>
 </template>
@@ -63,11 +63,12 @@ export default {
     },
     onQuery(){
       this.page=1
+      this.$refs.pagination.internalCurrentPage = 1;
       this.getSupPromoteSignUp()
     },
     pageChange(val){
         console.log(val)
-        if(this.screen.page === val) return
+        if(this.page === val) return
         this.page = val
         this.getSupPromoteSignUp()
     },
