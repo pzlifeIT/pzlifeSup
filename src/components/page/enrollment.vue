@@ -133,7 +133,7 @@ export default {
         data:that.screen,
         success:function(res){
             that.enrollmentList = res.suppromotesignup || [];
-            let retotal= Math.ceil(parseInt(res.total) / 10);
+            let retotal= parseInt(res.total);
             if (that.total === retotal) return;
             that.total = retotal;
         },

@@ -30,7 +30,7 @@
     </el-table-column>
     </el-table>
     <div class="flex-cen">
-      <el-pagination :hide-on-single-page="true" background @current-change="pageChange" layout="prev, pager, next" :total="total"> </el-pagination>
+      <el-pagination  :hide-on-single-page="true" background @current-change="pageChange" layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
     <div class="suspension" v-if="boxcard">
     <el-card class="box-card" >
@@ -149,7 +149,7 @@ export default {
           url: 'user/getpromoteList',
           success(res){
             that.promoteList = res.data;
-            let retotal= Math.ceil(parseInt(res.total) / 10);
+            let retotal= parseInt(res.total);
             if (that.total === retotal) return;
             that.total = retotal;
           },
