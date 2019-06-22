@@ -11,8 +11,8 @@
               <div class="user-header">
                   <el-dropdown class="dropdown" trigger="click" menu-align="start">
                       <span class="el-dropdown-link">
-                        <span class="name din fl">{{name}}</span>
-                        <img class="userImg" src="https://webimages.pzlive.vip/776logo.png" width="50px" />
+                        <img class="userImg fr" src="https://webimages.pzlive.vip/776logo.png" width="50px" />
+                        <span class="name din fr">{{name}}</span>
                       </span>
                       <el-dropdown-menu slot="dropdown">
                           <el-dropdown-item >
