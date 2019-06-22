@@ -3,11 +3,11 @@
     <el-button class="add" type="primary" @click="toggleCard(true)">新建推广活动</el-button>
 
     <el-table :data="promoteList" border style="width: 100%">
-      <el-table-column type="index" label="序号" width="180"></el-table-column>
-      <el-table-column  prop="title" label="活动标题" width="180"></el-table-column>
-      <el-table-column  prop="share_title" label="分享标题" width="180"></el-table-column>
-      <el-table-column  prop="share_count" label="分享次数" width="180"></el-table-column>
-      <el-table-column  prop="big_image" label="活动展示大图" width="180">
+      <el-table-column type="index" label="序号"></el-table-column>
+      <el-table-column  prop="title" label="活动标题" ></el-table-column>
+      <el-table-column  prop="share_title" label="分享标题" ></el-table-column>
+      <el-table-column  prop="share_count" label="分享次数" ></el-table-column>
+      <el-table-column  prop="big_image" label="活动展示大图" >
         <template slot-scope="scope">
   　　　　<img :src="scope.row.big_image" width="40"  class="head_pic"/>
   　　  </template>

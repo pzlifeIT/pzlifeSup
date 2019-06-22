@@ -9,7 +9,7 @@
             </el-col>
             <el-col class="fr" :xs="8" :sm="8" :md="4" >
               <div class="user-header">
-                  <el-dropdown trigger="click" menu-align="start">
+                  <el-dropdown class="dropdown" trigger="click" menu-align="start">
                       <span class="el-dropdown-link">
                         <span class="name din fl">{{name}}</span>
                         <img class="userImg" src="https://webimages.pzlive.vip/776logo.png" width="50px" />
@@ -189,11 +189,26 @@
     }
     .name{
       color: #fff;
+      width: calc(100% - 60px);
       height: 50px;
       line-height: 50px;
       margin-right: 10px;
       cursor: pointer;
       font-size: 18px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    .dropdown{
+      width: 100%;
+    }
+    .el-dropdown-link{
+      display: block;
+      width: 100%;
+      overflow: hidden;
+    }
+    .user-header{
+      width: 100%;
     }
     .userImg{
       background-color: #fff;
