@@ -47,6 +47,7 @@
       },
         methods:{
             quitlogin(){
+              localStorage.setItem("sup_con_id",'')
               this.$router.push({ path: 'login' })
             },
             modifyPwd(){

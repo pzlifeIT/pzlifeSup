@@ -102,6 +102,7 @@ export default {
       }
   },
   mounted(){
+    
     this.getpromoteList()
   },
    methods: {
@@ -124,9 +125,9 @@ export default {
         this.boxcard = bl
         this.markerimg = {}
       },
-      handleClick(scope){
+      handleClick(id){
         this.qrcodeCard = true
-        this.getQrcode(scope.date)
+        this.getQrcode(id)
       },
       hideQrcode(){
         this.qrcodeCard = false

@@ -150,7 +150,7 @@ function login() {
 let request = function(params = {}) {
     if (!params.url) throw new Error('url 未传值')
 
-    if (!localStorage.getItem("cms_con_id") & !params.login) {
+    if (!localStorage.getItem("sup_con_id") & !params.login) {
         login()
         return
     }

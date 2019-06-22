@@ -16,7 +16,7 @@
           <el-date-picker v-model="screen.start_time" type="datetime"  value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间" default-time="00:00:00"></el-date-picker>
         </el-form-item>
         <el-form-item label="报名结束时间">
-          <el-date-picker v-model="screen.end_time" type="date" placeholder="选择日期时间" @change="timechange" value-format="yyyy-MM-dd HH:mm:ss" default-time="2000-11-10 10:10:00"></el-date-picker>
+          <el-date-picker v-model="screen.end_time" type="datetime" placeholder="选择日期时间" @change="timechange" value-format="yyyy-MM-dd HH:mm:ss" default-time="2000-11-10 10:10:00"></el-date-picker>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onQuery">查询</el-button>
