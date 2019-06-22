@@ -51,10 +51,7 @@ export default {
         },
         success:function(res){
             localStorage.setItem("sup_con_id",res.sup_con_id)
-            console.log('2222222')
-            console.log(that.$router)
             that.$router.push({ path: '/marketing' })
-
         },
         error(code){
           let text = '';

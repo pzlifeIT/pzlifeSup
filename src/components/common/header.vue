@@ -189,7 +189,7 @@
     }
     .name{
       color: #fff;
-      width: calc(100% - 60px);
+      max-width: calc(100% - 60px);
       height: 50px;
       line-height: 50px;
       margin-right: 10px;

@@ -24,7 +24,7 @@
       </el-form>
     </el-card>
     <el-table :data="enrollmentList" border style="width: 100%">
-      <el-table-column  type="index" label="序号" width="180"></el-table-column>
+      <el-table-column  type="index" label="序号"></el-table-column>
       <el-table-column  prop="nick_name" label="姓名" ></el-table-column>
       <el-table-column  prop="mobile" label="手机号" ></el-table-column>
       <el-table-column  prop="create_time" label="报名时间" ></el-table-column>
