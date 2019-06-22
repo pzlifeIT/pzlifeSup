@@ -68,8 +68,8 @@ export default {
     pageChange(val){
         console.log(val)
         if(this.screen.page === val) return
-        this.screen.page = val
-        this.getpromoteList()
+        this.page = val
+        this.getSupPromoteSignUp()
     },
     getAllSupPromoteSignUp(page = 1){
       let that =this;
