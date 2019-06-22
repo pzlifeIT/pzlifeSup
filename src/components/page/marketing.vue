@@ -124,6 +124,7 @@ export default {
       toggleCard(bl){
         this.boxcard = bl
         this.markerimg = {}
+        this.promoteId = ''
       },
       handleClick(id){
         this.qrcodeCard = true
