@@ -23,61 +23,64 @@
   　　  </template> </el-table-column>
       <el-table-column fixed="right" label="操作" >
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row.id)" type="text" size="small">二维码</el-button>
+        <el-button @click="handleClick(scope.row.id,scope.row.title)" type="text" size="small">二维码</el-button>
         <el-button type="text" @click="getpromoteInfo(scope.row)" size="small">编辑</el-button>
         <el-button type="text" @click="enrollment(scope.row.id)" size="small">报名列表</el-button>
       </template>
     </el-table-column>
     </el-table>
+
     <div class="flex-cen">
       <el-pagination  :hide-on-single-page="true" background @current-change="pageChange" layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
+
     <div class="suspension" v-if="boxcard">
-    <el-card class="box-card" >
-      <div slot="header" class="clearfix">
-          <span>推广活动</span>
-        </div>
-      <el-form label-width="80px" >
-        <el-form-item label="活动标题" >
-          <el-input v-model="markerimg.title" placeholder="请输入活动标题"></el-input>
-        </el-form-item>
-        <el-form-item label="分享标题" >
-          <el-input v-model="markerimg.share_title"  placeholder="请输入微信分享标题"></el-input>
-        </el-form-item>
-        <el-form-item label="分享次数" >
-          <el-input v-model.number="markerimg.share_count"  placeholder="请输入微信分享次数"></el-input>
-        </el-form-item>
-        <el-form-item label="活动展示大图" >
-          <v-upload num="big_image" :image='markerimg.big_image' @upresult='upresult'></v-upload>
-        </el-form-item>
-        <el-form-item label="微信转发分享图片" >
-          <v-upload num='share_image' :image='markerimg.share_image' @upresult='upresult'></v-upload>
-        </el-form-item>
-        <el-form-item label="分享成功页面图片" >
-          <v-upload num='bg_image' :image='markerimg.bg_image' @upresult='upresult'></v-upload>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm()">保存</el-button>
-          <el-button @click="toggleCard(false)">取消</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
+      <el-card class="box-card" >
+        <div slot="header" class="clearfix">
+            <span>{{Mtitle}}</span>
+          </div>
+        <el-form label-width="80px" >
+          <el-form-item label="活动标题" >
+            <el-input v-model="markerimg.title" placeholder="请输入活动标题"></el-input>
+          </el-form-item>
+          <el-form-item label="分享标题" >
+            <el-input v-model="markerimg.share_title"  placeholder="请输入微信分享标题"></el-input>
+          </el-form-item>
+          <el-form-item label="分享次数" >
+            <el-input v-model.number="markerimg.share_count"  placeholder="请输入微信分享次数"></el-input>
+          </el-form-item>
+          <el-form-item label="活动展示大图" >
+            <v-upload num="big_image" :image='markerimg.big_image' @upresult='upresult'></v-upload>
+          </el-form-item>
+          <el-form-item label="微信转发分享图片" >
+            <v-upload num='share_image' :image='markerimg.share_image' @upresult='upresult'></v-upload>
+          </el-form-item>
+          <el-form-item label="分享成功页面图片" >
+            <v-upload num='bg_image' :image='markerimg.bg_image' @upresult='upresult'></v-upload>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm()">保存</el-button>
+            <el-button @click="toggleCard(false)">取消</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
     </div>
+
     <div class="suspension" v-show="qrcodeCard">
-    <el-card class="box-card" >
-      <div slot="header" class="clearfix">
-          <span>二维码</span>
-        </div>
-      <el-form >
-        <el-form-item >
-          <canvas v-show="canCode" id="qrcode" width="200" height="200"></canvas>
-        </el-form-item>
-        <el-form-item class="flex-cen">
-          <el-button class="codebtn" type="primary" @click="downImg()">下载</el-button>
-          <el-button class="codebtn"  @click="hideQrcode(false)">取消</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
+      <el-card class="box-card" >
+        <div slot="header" class="clearfix">
+            <span>{{Mtitle}}</span>
+          </div>
+        <el-form >
+          <el-form-item >
+            <canvas v-show="canCode" id="qrcode" width="200" height="200"></canvas>
+          </el-form-item>
+          <el-form-item class="flex-cen">
+            <el-button class="codebtn" type="primary" @click="downImg()">下载</el-button>
+            <el-button class="codebtn"  @click="hideQrcode(false)">取消</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
     </div>
   </div>
 </template>
@@ -98,11 +101,11 @@ export default {
         promoteId:'',
         markerimg:{},
         page:1,
-        total: 0
+        total: 0,
+        Mtitle:'推广活动'
       }
   },
   mounted(){
-    
     this.getpromoteList()
   },
    methods: {
@@ -122,11 +125,13 @@ export default {
         this.markerimg[data.num] = data.image_path
       },
       toggleCard(bl){
+        this.Mtitle = '新建推广活动'
         this.boxcard = bl
         this.markerimg = {}
         this.promoteId = ''
       },
-      handleClick(id){
+      handleClick(id,tit = ''){
+        this.Mtitle = tit
         this.qrcodeCard = true
         this.getQrcode(id)
       },
@@ -136,6 +141,7 @@ export default {
       },
       getpromoteInfo(scope){
         this.markerimg = JSON.parse(JSON.stringify(scope));
+        this.Mtitle = this.markerimg.title
         this.promoteId = scope.id
         this.boxcard = true
       },
