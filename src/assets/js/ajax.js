@@ -174,6 +174,7 @@ let request = function(params = {}) {
                 login();
                 return
             }
+            
             if (res.code == "200") {
                 typeof params.success == 'function' ? params.success(res) : '';
             } else if (res.code == "3100") {
@@ -181,6 +182,7 @@ let request = function(params = {}) {
             } else {
                 typeof params.error == 'function' ? params.error(res.code) : '';
             }
+
             typeof params.complete == 'function' ? params.complete(res) : '';
         },
         failed: function(code) {
