@@ -91,7 +91,7 @@
           <el-form-item label="" class="imgpreview" >
             <el-image class="elImg fl" v-for="(v,k) in imgList" :key="k" :src="v.image_path"></el-image>
           </el-form-item>
-          <el-form-item>
+          <el-form-item class="flex-cen">
             <el-button @click="hidePreview()">取消</el-button>
           </el-form-item>
         </el-form>
