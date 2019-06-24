@@ -10,6 +10,7 @@ import Router from 'vue-router';
 const Home = r => require.ensure([], () => r(require('../components/common/Home')), 'Home')
 const index = r => require.ensure([], () => r(require('../components/page/index')), 'index')
 const marketing = r => require.ensure([], () => r(require('../components/page/marketing')), 'marketing')
+const editMarketing = r => require.ensure([], () => r(require('../components/page/editMarketing')), 'editMarketing')
 const enrollment = r => require.ensure([], () => r(require('../components/page/enrollment')), 'enrollment')
 const modifyPwd = r => require.ensure([], () => r(require('../components/page/modifyPwd')), 'modifyPwd')
 const login = r => require.ensure([], () => r(require('../components/login/login')), 'login')
@@ -31,7 +32,10 @@ export default new Router({
         }, {
             path: '/marketing',
             component: marketing
-        }, , {
+        }, {
+          path: '/editMarketing',
+          component: editMarketing
+      }, {
             path: '/enrollment',
             component: enrollment
         }, {

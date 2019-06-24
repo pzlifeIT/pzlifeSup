@@ -140,10 +140,13 @@ export default {
         this.canCode = false
       },
       getpromoteInfo(scope){
-        this.markerimg = JSON.parse(JSON.stringify(scope));
-        this.Mtitle = this.markerimg.title
-        this.promoteId = scope.id
-        this.boxcard = true
+        this.$router.push({ path: '/editMarketing',query:{
+          id:scope.id
+        } })
+        // this.markerimg = JSON.parse(JSON.stringify(scope));
+        // this.Mtitle = this.markerimg.title
+        // this.promoteId = scope.id
+        // this.boxcard = true
       },
       getpromoteList(page = 1){
         let that =this
@@ -180,57 +183,7 @@ export default {
           this.$message({message:'分享次数必须是数字',type:'error' });
           return
         }
-        if(this.promoteId){
-          this.editpromote()
-        }else{
-          this.addpromote()
-        }
-      },
-      editpromote(){
-        let that =this;
-
-        that.$request({
-          data: that.markerimg,
-          url: 'user/editpromote',
-          success(res){
-            that.boxcard = false
-            that.$message({message:'修改成功',type:'success' });
-            that.getpromoteList()
-          },
-          error(code){
-            let text = '';
-            switch(parseInt(code)){
-              case 3001:
-                text = '标题不能为空';
-                break;
-              case 3001:
-                text = '标题不能为空';
-                break;
-              case 3002:
-                text = '分享标题不能为空';
-                break;
-              case 3006:
-                text = '活动展示大图图片没有上传过';
-                break;
-              case 3007:
-                text = '微信转发分享图片没有上传过';
-                break;
-              case 3008:
-                text = '分享成功页面图片没有上传过';
-                break;
-              case 3009:
-                text = '分享次数有误';
-                break;
-              case 3010:
-                text = '修改失败';
-                break;
-              default:
-                text = '意料之外的错误';
-                break
-            }
-            that.$message({message:text,type:'error' });
-          }
-        })
+        this.addpromote()
       },
       addpromote(){
         let that =this;

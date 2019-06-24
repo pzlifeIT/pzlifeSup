@@ -1,6 +1,6 @@
 <template>
     <div class="" :id='num'>
-        <img v-if="imageUrl" :src="imageUrl" @click="fileShow" class="avatar">
+        <img v-if="imaegUrl" :src="imaegUrl" @click="fileShow" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"  @click="fileShow"></i>
         <input class="hide" type="file" @change="fileChange" name="" :id="'fileinp'+num">
     </div>
@@ -12,11 +12,16 @@ export default {
   props: ['num','image'],
   data(){
     return{
-      imageUrl:''
+      imaegUrl:''
     }
   },
+  watch: {
+    'image': function(newVal){
+        this.imaegUrl = this.image
+    },
+  },
   mounted(){
-    this.imageUrl = this.image
+    this.imaegUrl = this.image
   },
   methods: {
     fileShow(){
@@ -36,7 +41,7 @@ export default {
         url: 'upload/uploadfile',
         success(res){
           console.log(that.num)
-           that.imageUrl = res.image_path || ''
+           that.imaegUrl = res.image_path || ''
            that.$emit('upresult',{
             image_path: res.image_path,
             num:that.num
