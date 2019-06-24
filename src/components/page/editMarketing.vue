@@ -30,6 +30,7 @@
     </el-tab-pane>
     <el-tab-pane label="活动详情图" name="second">
       <el-button class="add" type="primary" @click="showImg()">添加详情图</el-button>
+      <el-button class="fr add" type="primary" @click="showPreview()"><i class="el-icon-view"></i></el-button>
       <el-table :data="imgList" border style="width: 100%">
       <el-table-column  type="index" label="序号"></el-table-column>
       <el-table-column  prop="image_path" label="图片" >
@@ -64,6 +65,7 @@
         </el-form>
       </el-card>
     </div>
+  
     <div class="suspension" v-if="sort_card">
       <el-card class="box-card" >
         <div slot="header" class="clearfix">
@@ -76,6 +78,21 @@
           <el-form-item>
             <el-button type="primary" @click="submitSort()">保存</el-button>
             <el-button @click="hideSort(false)">取消</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </div>
+    <div class="suspension" v-show="preview_card">
+      <el-card class="box-card" >
+        <div slot="header" class="clearfix">
+            <span>图片预览</span>
+          </div>
+        <el-form label-width="1px" >
+          <el-form-item label="" class="imgpreview" >
+            <el-image class="elImg fl" v-for="(v,k) in imgList" :key="k" :src="v.image_path"></el-image>
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="hidePreview()">取消</el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -97,7 +114,8 @@ export default {
         total:0,
         sort_num:0,
         image_card:false,
-        sort_card:false
+        sort_card:false,
+        preview_card:false
       }
   },
   mounted(){
@@ -125,6 +143,12 @@ export default {
       this.image_path = ''
       this.sort_num = ''
       this.sort_card = false
+    },
+    showPreview(){
+      this.preview_card = true
+    },
+    hidePreview(){
+      this.preview_card = false
     },
     getPromoteimagedetail(){
         let that =this
@@ -379,5 +403,17 @@ export default {
 .add{
   margin-bottom: 20px;
   cursor: pointer;
+}
+.el-icon-view{
+  font-size: 18px;
+}
+.elImg{
+  // display: inline-block;
+  // float: left;
+  // width: 100%;
+}
+.imgpreview{
+  max-height: 600px;
+  overflow: auto;
 }
 </style>
