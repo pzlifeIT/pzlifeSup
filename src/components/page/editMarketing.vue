@@ -19,9 +19,9 @@
           <el-form-item label="微信转发分享图片" >
             <v-upload num='share_image' :image='markerimg.share_image' @upresult='upresult'></v-upload>
           </el-form-item>
-          <el-form-item label="分享成功页面图片" >
+          <!-- <el-form-item label="分享成功页面图片" >
             <v-upload num='bg_image' :image='markerimg.bg_image' @upresult='upresult'></v-upload>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item class="flex-cen">
             <el-button class="btn" type="primary" @click="submitForm()">保存</el-button>
           </el-form-item>
@@ -238,9 +238,10 @@ export default {
     },
     uploadPromoteImages(){
       let that =this,formData = new FormData();
-            formData.append('image_type', 1)
-            formData.append('promote_id', that.id)
-        formData.append('images[]', that.image_path)
+        formData.append('image_type', 1);
+        formData.append('promote_id', that.id);
+        formData.append('images[]', that.image_path);
+
         that.$request({
           data: formData,
           url: 'promote/uploadPromoteImages',

@@ -17,10 +17,10 @@
   　　　　<img :src="scope.row.share_image" width="40"  class="head_pic"/>
   　　  </template>
       </el-table-column>
-      <el-table-column prop="bg_image" label="分享成功页面图片">
+      <!-- <el-table-column prop="bg_image" label="分享成功页面图片">
         <template slot-scope="scope">
   　　　　<img :src="scope.row.bg_image" width="40"  class="head_pic"/>
-  　　  </template> </el-table-column>
+  　　  </template> </el-table-column> -->
       <el-table-column fixed="right" label="操作" >
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.row.id,scope.row.title)" type="text" size="small">二维码</el-button>
@@ -55,9 +55,9 @@
           <el-form-item label="微信转发分享图片" >
             <v-upload num='share_image' :image='markerimg.share_image' @upresult='upresult'></v-upload>
           </el-form-item>
-          <el-form-item label="分享成功页面图片" >
+          <!-- <el-form-item label="分享成功页面图片" >
             <v-upload num='bg_image' :image='markerimg.bg_image' @upresult='upresult'></v-upload>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item>
             <el-button type="primary" @click="submitForm()">保存</el-button>
             <el-button @click="toggleCard(false)">取消</el-button>
@@ -195,10 +195,10 @@ export default {
           this.$message({message:'请上传微信转发分享图片',type:'error' });
           return
         }
-        if(!this.markerimg.bg_image){
-          this.$message({message:'请上传分享成功页面图片',type:'error' });
-          return
-        }
+        // if(!this.markerimg.bg_image){
+        //   this.$message({message:'请上传分享成功页面图片',type:'error' });
+        //   return
+        // }
         that.$request({
           data: that.markerimg,
           url: 'user/addpromote',
