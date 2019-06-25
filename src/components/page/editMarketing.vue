@@ -3,7 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
     <el-tab-pane label="基本信息" name="first">
       <div class="box-card">
-      <el-form label-width="80px" >
+      <el-form label-width="100px" >
           <el-form-item label="活动标题" >
             <el-input v-model="markerimg.title" placeholder="请输入活动标题"></el-input>
           </el-form-item>
@@ -13,7 +13,7 @@
           <!-- <el-form-item label="分享次数" >
             <el-input v-model.number="markerimg.share_count"  placeholder="请输入微信分享次数"></el-input>
           </el-form-item> -->
-          <el-form-item label="活动展示大图" >
+          <el-form-item label="活动展示大图(宽度730px)" >
             <v-upload num='big_image' :image='markerimg.big_image' @upresult='upresult'></v-upload>
           </el-form-item>
           <el-form-item label="微信转发分享图片" >
