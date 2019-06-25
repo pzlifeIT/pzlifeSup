@@ -26,7 +26,7 @@ let tableToExcel = function(head = [], Data = []) {
         str += `<td>${ head[item] + '\t'}</td>`;
     }
     str += '</tr>'
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0, len = data.length; i < len; i++) {
         str += '<tr>';
         for (let item in Data[i]) {
             str += `<td>${ Data[i][item] + '\t'}</td>`;
