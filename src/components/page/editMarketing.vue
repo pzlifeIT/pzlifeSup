@@ -10,9 +10,9 @@
           <el-form-item label="分享标题" >
             <el-input v-model="markerimg.share_title"  placeholder="请输入微信分享标题"></el-input>
           </el-form-item>
-          <el-form-item label="分享次数" >
+          <!-- <el-form-item label="分享次数" >
             <el-input v-model.number="markerimg.share_count"  placeholder="请输入微信分享次数"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="活动展示大图" >
             <v-upload num='big_image' :image='markerimg.big_image' @upresult='upresult'></v-upload>
           </el-form-item>
@@ -190,14 +190,14 @@ export default {
         this.$message({message:'排序不能为空',type:'error' });
         return
       }
-      if(!Number.isInteger(this.markerimg.share_count)){
-          this.$message({message:'排序必须是数字',type:'error' });
-          return
-      }
-      if(this.markerimg.share_count >=1000){
-          this.$message({message:'排序不能超过3位数字',type:'error' });
-          return
-      }
+      // if(!Number.isInteger(this.markerimg.share_count)){
+      //     this.$message({message:'排序必须是数字',type:'error' });
+      //     return
+      // }
+      // if(this.markerimg.share_count >=1000){
+      //     this.$message({message:'排序不能超过3位数字',type:'error' });
+      //     return
+      // }
       this.sortPromoteimagedetail()
     },
     sortPromoteimagedetail(){
@@ -290,14 +290,14 @@ export default {
           this.$message({message:'分享标题不能为空',type:'error' });
           return
         }
-        if(!this.markerimg.share_count){
-          this.$message({message:'分享次数不能为空',type:'error' });
-          return
-        }
-        if(!Number.isInteger(this.markerimg.share_count)){
-          this.$message({message:'分享次数必须是数字',type:'error' });
-          return
-        }
+        // if(!this.markerimg.share_count){
+        //   this.$message({message:'分享次数不能为空',type:'error' });
+        //   return
+        // }
+        // if(!Number.isInteger(this.markerimg.share_count)){
+        //   this.$message({message:'分享次数必须是数字',type:'error' });
+        //   return
+        // }
         this.editpromote()
       },
       editpromote(){
