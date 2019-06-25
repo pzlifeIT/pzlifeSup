@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import vHead from './Header';
-    import vSidebar from './Sidebar';
+    import vHead from './header';
+    import vSidebar from './sidebar';
     export default {
       data () {
         return {
