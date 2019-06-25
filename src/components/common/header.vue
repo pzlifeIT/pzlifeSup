@@ -4,7 +4,8 @@
             <!--Logo area-->
             <el-col :xs="16" :sm="16" :md="20">
                 <div class="logo">  
-                    <span class="logo_prefix">品质生活广场</span><span class="logo_suffix">CMS</span>
+                    <span class="logo_prefix">776品质生活广场</span>
+                    <!-- <span class="logo_suffix">CMS</span> -->
                 </div>
             </el-col>
             <el-col class="fr" :xs="8" :sm="8" :md="4" >
