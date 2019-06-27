@@ -6,11 +6,17 @@
         <el-button style="float: right; padding: 3px 10px" type="primary" @click="getAllSupPromoteSignUp()">导出</el-button>
       </div>
       <el-form :inline="true"  class="demo-form-inline">
-        <el-form-item label="姓名">
-          <el-input v-model="screen.nick_name" placeholder="姓名"></el-input>
+        <el-form-item label="学员姓名">
+          <el-input v-model="screen.study_name" placeholder="学员姓名"></el-input>
         </el-form-item>
-        <el-form-item label="手机号">
-          <el-input v-model="screen.mobile" placeholder="手机号"></el-input>
+        <el-form-item label="学员手机号">
+          <el-input v-model="screen.study_mobile" placeholder="学员手机号"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-select v-model="screen.sex" placeholder="请选择">
+          <el-option v-for="item in sexSel" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
         </el-form-item>
         <el-form-item label="报名开始时间">
           <el-date-picker v-model="screen.start_time" type="datetime"  value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间" default-time="00:00:00"></el-date-picker>
@@ -25,8 +31,11 @@
     </el-card>
     <el-table :data="enrollmentList" border style="width: 100%">
       <el-table-column  type="index" label="序号"></el-table-column>
-      <el-table-column  prop="nick_name" label="姓名" ></el-table-column>
-      <el-table-column  prop="mobile" label="手机号" ></el-table-column>
+      <el-table-column  prop="study_name" label="学员姓名" ></el-table-column>
+      <el-table-column  prop="study_mobile" label="学员手机号" ></el-table-column>
+      <el-table-column  prop="sex" label="性别" ></el-table-column>
+      <el-table-column  prop="age" label="年龄" ></el-table-column>
+      <el-table-column  prop="signinfo" label="报名内容" ></el-table-column>
       <el-table-column  prop="create_time" label="报名时间" ></el-table-column>
     </el-table>
     <div class="flex-cen">
@@ -44,11 +53,22 @@ export default {
         allEnrollmentList:[],
         screen:{
           promote_id:'',
-          nick_name:'',
-          mobile:'',
+          study_name:'',
+          study_mobile:'',
+          sex:'',
           start_time: '',
           end_time:''
         },
+        sexSel:[{
+          value:'',
+          label:'全部'
+        },{
+          value:'1',
+          label:'男'
+        },{
+          value:'2',
+          label:'女'
+        }],
         page:1,
         total:0
       }
@@ -111,8 +131,11 @@ export default {
     pushList(list){
       for(let i=0,len=list.length;i<len;i++){
         this.allEnrollmentList.push({
-          nick_name:list[i].nick_name,
-          mobile:list[i].mobile,
+          study_name:list[i].study_name,
+          study_mobile:list[i].study_mobile,
+          sex:list[i].sex,
+          age:list[i].age,
+          signinfo:list[i].signinfo,
           create_time:list[i].create_time
         })
       }
@@ -122,7 +145,7 @@ export default {
         this.$message({message:'暂无导出内容',type:'warning' });
         return
       }
-      let head = ['姓名','手机号','报名时间'];
+      let head = ['学员姓名','学员手机号','性别','年龄','报名内容','报名时间'];
       tableToExcel(head,this.allEnrollmentList)
     },
     getSupPromoteSignUp(){
