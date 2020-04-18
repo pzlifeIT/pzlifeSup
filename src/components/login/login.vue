@@ -51,7 +51,13 @@ export default {
         },
         success:function(res){
             localStorage.setItem("sup_con_id",res.sup_con_id)
-            that.$router.push({ path: '/marketing' })
+            // that.$router.push({ path: '/marketing' })
+          if (that.$route.query.redirect) { //如果存在参数
+            let redirect = that.$route.query.redirect
+            that.$router.push(redirect)//则跳转至进入登录页前的路由
+          } else {
+            that.$router.push('/marketing')//否则跳转至首页
+          }
         },
         error(code){
           let text = '';

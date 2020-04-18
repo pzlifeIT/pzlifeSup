@@ -14,7 +14,7 @@ const editMarketing = r => require.ensure([], () => r(require('../components/pag
 const enrollment = r => require.ensure([], () => r(require('../components/page/enrollment')), 'enrollment')
 const modifyPwd = r => require.ensure([], () => r(require('../components/page/modifyPwd')), 'modifyPwd')
 const login = r => require.ensure([], () => r(require('../components/login/login')), 'login')
-
+const tabble = r => require.ensure([], () => r(require('../components/page/tabble')), 'tabble')
 Vue.use(Router)
 
 export default new Router({
@@ -45,5 +45,8 @@ export default new Router({
     }, {
         path: '/login',
         component: login
+    },{
+      path:'/tabble',
+      component:tabble
     }]
 })

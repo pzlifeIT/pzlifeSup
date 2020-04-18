@@ -9,9 +9,9 @@
             <el-submenu index="2">
                 <template slot="title">
                     <span class="sb-icon"><i class="el-icon-setting"></i></span>
-                    <span class="sb-cn">市场推广管理</span>
+                    <span class="sb-cn">预约检测</span>
                 </template>
-                <el-menu-item index="marketing">市场推广</el-menu-item>
+                <el-menu-item index="marketing">检测列表</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
