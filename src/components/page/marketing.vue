@@ -7,9 +7,10 @@
       <el-table-column prop="name" label="姓名"></el-table-column>
       <el-table-column prop="_sex" label="性别"></el-table-column>
       <el-table-column prop="age" label="年龄"></el-table-column>
-      <el-table-column prop="phone" label="电话"></el-table-column>
+      <el-table-column prop="mobile" label="电话"></el-table-column>
       <el-table-column prop="_idenity_type" label="证件类型"></el-table-column>
       <el-table-column prop="idenity_nmber" label="证件号"></el-table-column>
+      <el-table-column prop="idenity_nmber" label="预约时间"></el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="getpromoteInfo(scope.row)" size="small">查看</el-button>
@@ -224,6 +225,7 @@
 
 <style lang="less" scoped>
   #marketing {
+    margin-top: 26px;
     .add {
       margin-bottom: 20px;
       cursor: pointer;
