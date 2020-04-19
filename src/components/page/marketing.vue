@@ -9,7 +9,7 @@
       <el-table-column prop="age" label="年龄"></el-table-column>
       <el-table-column prop="phone" label="电话"></el-table-column>
       <el-table-column prop="_idenity_type" label="证件类型"></el-table-column>
-      <el-table-column prop="idenity_num" label="证件号"></el-table-column>
+      <el-table-column prop="idenity_nmber" label="证件号"></el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="getpromoteInfo(scope.row)" size="small">预约单</el-button>
