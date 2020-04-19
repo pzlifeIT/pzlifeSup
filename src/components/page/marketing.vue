@@ -1,6 +1,6 @@
 <template>
   <div id="marketing">
-    <el-button class="add" type="primary" @click="toggleCard(true)">新建推广活动</el-button>
+    <!--<el-button class="add" type="primary" @click="toggleCard(true)">新建推广活动</el-button>-->
 
     <el-table :data="list" border style="width: 100%">
       <el-table-column type="index" label="序号"></el-table-column>
@@ -12,7 +12,7 @@
       <el-table-column prop="idenity_nmber" label="证件号"></el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
-          <el-button type="text" @click="getpromoteInfo(scope.row)" size="small">预约单</el-button>
+          <el-button type="text" @click="getpromoteInfo(scope.row)" size="small">查看</el-button>
         </template>
       </el-table-column>
     </el-table>

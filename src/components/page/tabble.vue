@@ -19,8 +19,8 @@
         <td class="td-title">检<br>测<br>项<br>目<br>内<br>容</td>
         <td colspan="3" class="td-content">
           <div class="left-center">{{v}}</div>
-          <div class="td-left">（国纳）项目检测条码</div>
-          <div class="td-right">（粘贴千麦）项目条码</div>
+          <!--<div class="td-left">（国纳）项目检测条码</div>-->
+          <div class="td-left">（粘贴千麦）项目条码</div>
         </td>
       </tr>
     </table>
