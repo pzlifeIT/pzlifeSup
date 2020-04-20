@@ -26,6 +26,19 @@
     </table>
     <div class="people">接收员签收：</div>
     <div class="people mr">签收时间：</div>
+    <el-dialog
+      title="核验"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <el-form>
+        <el-form-item label="安全码：">
+          <el-input v-model="code" placeholder="请输入安全码"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click='checked'>确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -38,17 +51,47 @@
         info: {},
         project: [],
         group: [],
-        arr:[]
+        arr: [],
+        code: '',
+        dialogVisible:true,
+        time:'',
+        state:''
       }
     },
-    created() {
-      localStorage.setItem('id', this.$route.query.id)
+    created(){
+      this.id = this.$route.query.id
+      this.time = this.$route.query.time
+      if (this.$route.query.code) {
+        this.state = false
+        this.dialogVisible = true
+      } else {
+        this.state = true
+        this.dialogVisible = false
+        this.getInfo()
+      }
+
     },
     mounted() {
-      this.id = this.$route.query.id
-      this.getInfo()
+
+
     },
     methods: {
+      checked(){
+        let that = this
+        that.$request({
+          url:'user/verifySamplingAppointment',
+          data:{
+            id:that.id,
+            time:that.time,
+            safe_code:that.code
+          },
+          success(res) {
+            that.dialogVisible = false
+            that.state = true
+            that.getInfo()
+          }
+        })
+      },
       getInfo() {
         let that = this
         that.$request({
@@ -68,8 +111,8 @@
         let arr = []
         for (let i = 0; i < pro.length; i++) {
           for (let j = 0; j < group.length; j++) {
-            for (let k in group[j]){
-              if (pro[i] == k){
+            for (let k in group[j]) {
+              if (pro[i] == k) {
                 arr.push(group[j][k])
               }
             }
@@ -82,11 +125,12 @@
 </script>
 
 <style scoped>
-  .tcontent{
+  .tcontent {
     width: 100%;
     height: 100%;
     overflow: auto;
   }
+
   .title {
     width: 100%;
     text-align: center;
@@ -149,8 +193,9 @@
     padding-right: 400px;
     box-sizing: border-box;
   }
-  .left-center{
-    width:50%;
+
+  .left-center {
+    width: 50%;
     text-align: center;
     position: absolute;
     top: 20px;
