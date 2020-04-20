@@ -29,7 +29,7 @@
     <el-dialog
       title="核验"
       :visible.sync="dialogVisible"
-      width="30%">
+      width="50%">
       <el-form>
         <el-form-item label="安全码：">
           <el-input v-model="code" placeholder="请输入安全码"></el-input>

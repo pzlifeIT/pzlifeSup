@@ -180,7 +180,7 @@ let request = function(params = {}) {
             } else if (res.code == "3100") {
                 message('没有权限');
             } else {
-                typeof params.error == 'function' ? params.error(res.code) : '';
+                typeof params.error == 'function' ? params.error(res.code) : message(res.msg);
             }
 
             typeof params.complete == 'function' ? params.complete(res) : '';
