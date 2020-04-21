@@ -63,7 +63,8 @@
             that.list = that.disData(res.data)
             that.total = res.total;
           },
-          error() {
+          error(code) {
+            that.$message.error('错误码：'+code)
           }
         })
       },
@@ -120,102 +121,6 @@
           }
         })
       },
-
-      submitForm() {
-        if (!this.markerimg.title) {
-          this.$message({message: '标题不能为空', type: 'error'});
-          return
-        }
-        if (!this.markerimg.share_title) {
-          this.$message({message: '分享标题不能为空', type: 'error'});
-          return
-        }
-        // if(!this.markerimg.share_count){
-        //   this.$message({message:'分享次数不能为空',type:'error' });
-        //   return
-        // }
-        // if(!Number.isInteger(this.markerimg.share_count)){
-        //   this.$message({message:'分享次数必须是数字',type:'error' });
-        //   return
-        // }
-        this.addpromote()
-      },
-      addpromote() {
-        let that = this;
-        if (!this.markerimg.big_image) {
-          this.$message({message: '请上传活动展示大图', type: 'error'});
-          return
-        }
-        if (!this.markerimg.share_image) {
-          this.$message({message: '请上传微信转发分享图片', type: 'error'});
-          return
-        }
-        // if(!this.markerimg.bg_image){
-        //   this.$message({message:'请上传分享成功页面图片',type:'error' });
-        //   return
-        // }
-        that.$request({
-          data: that.markerimg,
-          url: 'user/addpromote',
-          success(res) {
-            that.boxcard = false
-            that.getpromoteList()
-            that.$message({message: '创建成功', type: 'success'});
-          },
-          error(code) {
-            let text = '';
-            switch (parseInt(code)) {
-              case 3001:
-                text = '标题不能为空';
-                break;
-              case 3002:
-                text = '分享标题不能为空';
-                break;
-              case 3003:
-                text = '活动展示大图未上传';
-                break;
-              case 3004:
-                text = '微信转发分享图片未上传';
-                break;
-              case 3005:
-                text = '分享成功页面图片未上传';
-                break;
-              case 3006:
-                text = '活动展示大图图片没有上传过';
-                break;
-              case 3007:
-                text = '微信转发分享图片没有上传过';
-                break;
-              case 3008:
-                text = '分享成功页面图片没有上传过';
-                break;
-              case 3009:
-                text = '分享次数有误';
-                break;
-              case 3010:
-                text = '添加失败';
-                break;
-              default:
-                text = '意料之外的错误';
-                break
-            }
-            that.$message({message: text, type: 'error'});
-          }
-        })
-      },
-      getQrcode(id) {
-        let that = this;
-        let wapurl = process.env.WAP_URL || WAP_URL,
-          url = wapurl + "?hid=" + id + '&pid=' + that.$glbalData.userInfo.uid;
-
-        QRcode.toCanvas(document.getElementById('qrcode'), url, function (error) {
-          if (error) throw new Error(error)
-          that.canCode = true
-        })
-      },
-      downImg() {
-        downloadIamge(document.getElementById('qrcode').toDataURL("image/png"), '推广活动')
-      }
     },
     components: {
       vUpload

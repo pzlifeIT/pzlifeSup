@@ -53,12 +53,12 @@
         group: [],
         arr: [],
         code: '',
-        dialogVisible:true,
-        time:'',
-        state:''
+        dialogVisible: true,
+        time: '',
+        state: ''
       }
     },
-    created(){
+    created() {
       this.id = this.$route.query.id
       this.time = this.$route.query.time
       if (this.$route.query.code) {
@@ -76,14 +76,14 @@
 
     },
     methods: {
-      checked(){
+      checked() {
         let that = this
         that.$request({
-          url:'user/verifySamplingAppointment',
-          data:{
-            id:that.id,
-            time:that.time,
-            safe_code:that.code
+          url: 'user/verifySamplingAppointment',
+          data: {
+            id: that.id,
+            time: that.time,
+            safe_code: that.code
           },
           success(res) {
             that.dialogVisible = false
@@ -104,6 +104,9 @@
             that.project = res.result.project_id.split(',')
             that.group = res.result.projects
             that.dis(that.project, that.group)
+          },
+          error(code) {
+            that.$message.error('错误码：' + code)
           }
         })
       },
