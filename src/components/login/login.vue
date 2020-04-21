@@ -3,8 +3,8 @@
     <el-card class="box-card">
       <img class="logImg" src="https://webimages.pzlive.vip/776logo.png" alt="">
       <el-form  label-position="top" label-width="80px" :model="userinfo">
-        <el-form-item label="手机号:">
-          <el-input placeholder="请输入手机号" v-model="userinfo.user"></el-input>
+        <el-form-item label="账号:">
+          <el-input placeholder="请输入账号" v-model="userinfo.user"></el-input>
         </el-form-item>
         <el-form-item label="密码:">
           <el-input placeholder="请输入密码" v-model="userinfo.pwd" type="password"></el-input>
