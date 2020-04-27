@@ -29,6 +29,7 @@
             success:function(res){
                 that.$glbalData.userInfo = res.data || {};
                 that.name = res.data.sup_name
+              localStorage.setItem('sup_id',res.data.id)
             }
           })
         }

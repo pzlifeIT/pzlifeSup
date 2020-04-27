@@ -13,6 +13,14 @@
                 </template>
                 <el-menu-item index="marketing">检测列表</el-menu-item>
             </el-submenu>
+
+          <el-submenu index="/account" route="/account">
+            <template slot="title">
+              <span class="sb-icon"><i class="el-icon-setting"></i></span>
+              <span class="sb-cn">子账户管理</span>
+            </template>
+            <el-menu-item index="account" >账户列表</el-menu-item>
+          </el-submenu>
         </el-menu>
     </div>
 </template>
@@ -20,7 +28,7 @@
     export default {
         computed:{
             onRoutes(){
-                return this.$route.path.replace('/','');
+                return this.$route.path.replace('/','/account');
             }
         }
     }

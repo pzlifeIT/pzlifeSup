@@ -15,6 +15,7 @@ const enrollment = r => require.ensure([], () => r(require('../components/page/e
 const modifyPwd = r => require.ensure([], () => r(require('../components/page/modifyPwd')), 'modifyPwd')
 const login = r => require.ensure([], () => r(require('../components/login/login')), 'login')
 const tabble = r => require.ensure([], () => r(require('../components/page/tabble')), 'tabble')
+const account = r => require.ensure([],()=>r(require('../components/page/account')),'account')
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +42,9 @@ export default new Router({
         }, {
             path: '/modifyPwd',
             component: modifyPwd
+        },{
+          path:'/account',
+          component:account
         }]
     }, {
         path: '/login',
