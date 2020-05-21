@@ -21,6 +21,13 @@
             </template>
             <el-menu-item index="account" >账户列表</el-menu-item>
           </el-submenu>
+          <el-submenu index="/active" route="/active">
+            <template slot="title">
+              <span class="sb-icon"><i class="el-icon-setting"></i></span>
+              <span class="sb-cn">推广活动</span>
+            </template>
+            <el-menu-item index="active" >活动列表</el-menu-item>
+          </el-submenu>
         </el-menu>
     </div>
 </template>
